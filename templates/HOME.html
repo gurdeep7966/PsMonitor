@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="jumbotron text-center">
+  <h1 class="display-5">Welcome to PsMonitoring App!!</h1>
+  <p class="lead">This website is built to monitor and controle peoplesoft domains hosted on diffrent servers.</p>
+  <hr class="my-4">
+  {% if session.logged_in == NULL %}
+    <p>Please login or register if already not have an account </p>
+    <a class="btn btn-primary btn-lg " href="/register" >Register</a>
+    <a class="btn btn-success btn-lg " href="/login" >Login</a>
+  {% endif %}
+
+</div>
+
+{% endblock %}

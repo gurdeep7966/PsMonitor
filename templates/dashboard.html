@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+
+<h1>Dashboard <small>Welcome {{session.username}}</small></h1>
+
+<hr>
+<table class="table table-striped table-hover">
+    <tr class="table-dark">
+        <th>Instance ID</th>
+        <th>Instance</th>
+        <th>Status</th>
+
+    </tr>
+    {% for instance in instance_status %}
+    {%if instance.status == 'Instance is running'%}
+        <a href="/instance_details/{{instance.id}}">
+        <tr class="table-success"  >
+            <td>{{instance.id}}</td>
+            <td><a href="/instance_details/{{instance.id}}">{{instance.instance_name}}</a></td>
+            <td>{{instance.status}}</td>
+
+        </tr>
+            </a>
+    {%elif instance.status == 'Instance is partially running'%}
+    <a href="/instance_details/{{instance.id}}">
+        <tr class="table-warning">
+            <td>{{instance.id}}</td>
+            <td><a href="/instance_details/{{instance.id}}">{{instance.instance_name}}</a></td>
+            <td>{{instance.status}}</td>
+
+        </tr>
+    </a>
+    {%elif instance.status == 'Instance is down'%}
+
+        <tr class="table-danger ">
+            <td>{{instance.id}}</td>
+             <td><a href="/instance_details/{{instance.id}}">{{instance.instance_name}}</a></td>
+            <td>{{instance.status}}</td>
+
+        </tr>
+    {%endif     %}
+    {% endfor %}
+</table>
+
+{% endblock %}
+
+<!-- <td><a class="btn btn-light float-right" href="/edit_articles/{{article.id}}">Edit</a></td>
+        <td><a class="btn btn-danger" href="#">Delete</a></td>-->
