@@ -71,8 +71,9 @@ def start_thirdeye():
         new_msg = True
         for i, conn in enumerate(all_connections):
             while True:
+                try:
 
-                     msg = conn.recv(16)
+                     msg = conn.recv(1024)
                      if new_msg:
                          print("new msg len:", msg[:HEADERSIZE])
                          msglen = int(msg[:HEADERSIZE])
@@ -90,6 +91,8 @@ def start_thirdeye():
                          print(pickle.loads(full_msg[HEADERSIZE:]))
                          new_msg = True
                          full_msg = b""
+                except:
+                    pass
 
 
 # Display current connections
